@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    cout<<"Enter the number of input"<<endl;
+    int n;
+    cin>>n;
+    char d[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>d[i];
+    }
+    int state =1;
+    for(int j=0;j<n;j++)
+    {
+        char c=d[j];
+        switch (state) {
+                case (1): {
+                    if (c == 'n' || c == 'N') {
+                        state = 2;
+                    }
+
+                }
+                break;
+                case (2): {
+                    if (c == 'a' || c == 'A') {
+                        state = 3;
+                    } else if (c == 'n' || c == 'N') {
+                        state = 2;
+                    }
+                }
+                break;
+                case (3): {
+                    if (c == 'n' || c == 'N') {
+                        state = 4;
+                    } else {
+                        state = 1;
+                    }
+                }
+                break;
+                case (4): {
+                    if (c == 'o' || c == 'O') {
+                        state = 5;
+                    } else if (c == 'n' || c == 'N') {
+                        state = 2;
+                    } else {
+                        state = 1;
+                    }
+                }
+                break;
+                case (5): {
+                    state = 5;
+                }
+                break;
+            }
+        }
+        if (state == 5) {
+            cout<<"DFA accepts this string";
+        } else {
+            cout<<"DFA does not accept this string";
+        }
+    }
+
+
+/*sample input:
+Enter the number of input 4
+n a n o
+
+
+sample output:
+DFA accepts this string
+
+
+----------------------------------------------------
+
+sample input:
+Enter the number of input 2
+q r
+
+
+sample output:
+DFA does not accepts this string
+*/
